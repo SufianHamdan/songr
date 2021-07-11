@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Albums</title>
+    <link th:href="@{/css/styles.css}" rel="stylesheet">
+</head>
+<body>
+    <ul>
+        <li><a class="active" href="/">Home</a></li>
+        <li><a href="./albums">Albums</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li style="float:right"><a href="#about">About</a></li>
+    </ul>
+
+  <div>
+    <div th:each="obj : ${albums}">
+        <p th:text="${obj.title}"></p>
+        <p th:text="${obj.artist}"></p>
+        <p th:text="${obj.songCount}"></p>
+        <p th:text="${obj.length}"></p>
+        <img th:src="${obj.imageUrl}" th:alt="${obj.title}"/>
+    </div>
+  </div>
+</body>
+</html>
