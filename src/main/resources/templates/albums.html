@@ -12,6 +12,15 @@
         <li><a href="#contact">Contact</a></li>
         <li style="float:right"><a href="#about">About</a></li>
     </ul>
+    <h1>Add New Album</h1>
+    <form action="#" th:action="@{/album}" th:object="${album}" method="post">
+        <p>Message: <input type="text" th:field="*{title}"/></p>
+        <p>Rating: <input type="number" th:field="*{artist}"/></p>
+        <p>Message: <input type="text" th:field="*{songCount}"/></p>
+        <p>Rating: <input type="number" th:field="*{length}"/></p>
+        <p>Message: <input type="text" th:field="*{imageUrl}"/></p>
+        <p><input type="submit" value="Submit"/> <input type="reset" value="Reset"></p>
+    </form>
 
   <div>
     <div th:each="obj : ${albums}">
