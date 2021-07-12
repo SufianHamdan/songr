@@ -1,13 +1,30 @@
 package com.example.demo;
 
+import javax.persistence.*;
+
+@Entity
 public class Album {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name="Album_Title", length=50, nullable=false, unique=true)
     private String title;
+
+    @Column(name="Album_Artist", length=50, nullable=false, unique=true)
     private String artist;
+
+    @Column(name="Album_Song_Count", length=50, nullable=false, unique=true)
     private int songCount;
+
+    @Column(name="Album_Length", length=50, nullable=false, unique=true)
     private float length;
+
+    @Column(name="Album_Image_URL", length=50, nullable=false, unique=true)
     private String imageUrl;
 
     public Album(String title, String artist, int songCount, float length, String imageUrl) {
+        this.id = id;
         this.title = title;
         this.artist = artist;
         this.songCount = songCount;
@@ -17,6 +34,10 @@ public class Album {
 
     public Album(){
 
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getTitle() {
