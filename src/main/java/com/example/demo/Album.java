@@ -23,6 +23,18 @@ public class Album {
     @Column(name="Album_Image_URL", length=50, nullable=false, unique=true)
     private String imageUrl;
 
+    public Song getSong() {
+        return song;
+    }
+
+    public void setSong(Song song) {
+        this.song = song;
+    }
+
+    @ManyToOne
+    @JoinTable(name="Song_Id")
+    private Song song;
+
     public Album(String title, String artist, int songCount, float length, String imageUrl) {
         this.id = id;
         this.title = title;
