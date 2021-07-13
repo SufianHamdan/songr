@@ -1,16 +1,20 @@
 package com.example.demo;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class AlbumController {
     @Autowired
     private AlbumRepository albumRepository;
+    private SongRepository songRepository;
 
     @GetMapping("/")
     String splashPage(){
@@ -33,4 +37,21 @@ public class AlbumController {
         model.addAttribute("album", album);
         return "albums";
     }
+
+    @PostMapping("/albums/{id}/songs")
+    public ResponseEntity<Album> addAblumSongs(@PathVariable Long id, Long songId){
+        Song song = songRepository.findById(songId).orElseThrow();
+
+        Album album = albumRepository.findById(id).orElseThrow();
+        album.setSong(song);
+
+        return new ResponseEntity<>(albumRepository.save(album), HttpStatus.OK);
+    }
+
+    @GetMapping("albums/{id}")
+    public ResponseEntity<Album> getOneAlbum(@PathVariable Long id){
+        Album returnedAlbum = albumRepository.findById(id).orElseThrow();
+        return new ResponseEntity<>(returnedAlbum, HttpStatus.OK);
+    }
+
 }
