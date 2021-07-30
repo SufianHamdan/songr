@@ -1,7 +1,6 @@
-package com.example.demo;
+package com.example.demo.Model;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 public class Song {
@@ -14,14 +13,15 @@ public class Song {
     private float length ;
     private int trackNumber;
 
-    @OneToMany
-    private List<Album> album;
+    @ManyToOne
+    @JoinColumn(name = "album_id")
+    private Album album;
 
     public Song(){
 
     }
 
-    public Song(String title, float length, int trackNumber, List<Album> album) {
+    public Song(String title, float length, int trackNumber, Album album) {
         this.title = title;
         this.length = length;
         this.trackNumber = trackNumber;
@@ -55,11 +55,11 @@ public class Song {
         this.trackNumber = trackNumber;
     }
 
-    public List<Album> getAlbum() {
-        return album;
+    public Long getId() {
+        return id;
     }
 
-    public void setAlbum(List<Album> album) {
-        this.album = album;
+    public Album getAlbum() {
+        return album;
     }
 }

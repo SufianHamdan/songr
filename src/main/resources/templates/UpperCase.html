@@ -6,6 +6,14 @@
   <link th:href="@{/css/styles.css}" rel="stylesheet">
 </head>
 <body>
-  <p th:text="'This is the uppercase of the word: ' + ${text} + '!'"></p>
+<ul>
+    <li><a class="active" href="/">Home</a></li>
+    <li><a href="/albums">Albums</a></li>
+    <li><a href="/upperCase/hello">Capitalize</a></li>
+    <li><a href="/songs">Songs</a></li>
+    <li style="float:right"><a href="/hello">Hello</a></li>
+</ul>
+
+  <h2 th:text="'This is the uppercase of the word: ' + ${text} + '!'"></h2>
 </body>
 </html>

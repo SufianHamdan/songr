@@ -35,3 +35,8 @@ li a:hover:not(.active) {
 .active {
   background-color: #04AA6D;
 }
+
+img {
+width: 150px;
+height: 150px;
+}

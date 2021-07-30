@@ -1,6 +1,7 @@
-package com.example.demo;
+package com.example.demo.Model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Album {
@@ -8,32 +9,14 @@ public class Album {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name="Album_Title", length=50, nullable=false, unique=true)
     private String title;
-
-    @Column(name="Album_Artist", length=50, nullable=false, unique=true)
     private String artist;
-
-    @Column(name="Album_Song_Count", length=50, nullable=false, unique=true)
     private int songCount;
-
-    @Column(name="Album_Length", length=50, nullable=false, unique=true)
     private float length;
-
-    @Column(name="Album_Image_URL", length=50, nullable=false, unique=true)
     private String imageUrl;
 
-    public Song getSong() {
-        return song;
-    }
-
-    public void setSong(Song song) {
-        this.song = song;
-    }
-
-    @ManyToOne
-    @JoinTable(name="Song_Id")
-    private Song song;
+    @OneToMany(mappedBy = "album")
+    private List<Song> songs;
 
     public Album(String title, String artist, int songCount, float length, String imageUrl) {
         this.id = id;
@@ -46,6 +29,14 @@ public class Album {
 
     public Album(){
 
+    }
+
+    public List<Song> getSongs() {
+        return songs;
+    }
+
+    public void setSongs(List<Song> songs) {
+        this.songs = songs;
     }
 
     public Long getId() {
